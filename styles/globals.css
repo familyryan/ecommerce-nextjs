@@ -2,26 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: "Eina";
+  src: url("/fonts/Eina.otf");
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+
+@font-face {
+  font-family: "Eina Light";
+  src: url("/fonts/Eina-Light.otf");
+}
+
+@font-face {
+  font-family: "Eina SemiBold";
+  src: url("/fonts/Eina-SemiBold.otf");
+}
+
+@layer base {
+  p, h1, h2, h3, h4, h5 {
+    color: rgba(0, 0, 0, .8);
+    font-family: Eina;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.Toastify__progress-bar--default {
+  background: #89bdf9 !important;
 }
