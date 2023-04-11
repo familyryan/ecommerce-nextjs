@@ -1,14 +1,18 @@
 import Head from "next/head"
 import { titleIfy, slugify } from "@/utils/helpers"
+import { fetchInventory } from "@/utils/inventoryProvider"
 import inventory from "@/utils/inventory"
 import Center from "@/components/heroComponents/Center"
 import Tag from "@/components/heroComponents/Tag"
 import Footer from "@/components/heroComponents/Footer"
 import Showcase from "@/components/heroComponents/Showcase"
+import DisplaySmall from "@/components/heroComponents/DisplaySmall"
 // import CartLinkWithContext from "@/components/cartLink"
 
-export default function Home({categories: categoryData = []}) {
+import DisplayMedium from "@/components/heroComponents/DisplayMedium"
+export default function Home({categories: categoryData = [], inventoryData = []}) {
 
+  const inventory = inventoryData.slice(0, 4)
  
   const categories = categoryData.slice(0,2)
   return (
@@ -20,6 +24,7 @@ export default function Home({categories: categoryData = []}) {
           Anone Ecommerce
         </title>
       </Head>
+      
       <div className="bg-blue-300
         p-6 pb-10 smpb-6
         flex lg:flex-row flex-col">
@@ -34,7 +39,7 @@ export default function Home({categories: categoryData = []}) {
               link={`/product/${slugify(inventory[2].name)}`}
             />
             <Footer
-              designer="Jason Bourne"
+              designer="Anone"
             />
           </div>
           <div className="flex flex-1 justify-center items-center relative">
@@ -47,14 +52,59 @@ export default function Home({categories: categoryData = []}) {
           </div>
         </div>
       </div>
-    
+      <div className="lg:my-8 lg:grid-cols-2 grid-cols-1 grid gap-4 my-4">
+        <DisplayMedium
+        imageSrc={categories[0].image}
+        subtitle={`${categories[0].itemCount} items`}
+        title={titleIfy(categories[0].name)}
+        link={`/category/${slugify(categories[0].name)}`}/>
+        <DisplayMedium
+        imageSrc={categories[1].image}
+        subtitle={`${categories[1].itemCount} items`}
+        title={titleIfy(categories[1].name)}
+        link={`/category/${slugify(categories[1].name)}`}/>
+
+      </div>
+      <div className="pt-10 pb-6 flex flex-col items-center">
+        <h2 className="text-4xl mb-3">
+          Trending Now
+        </h2>
+        <p className="text-gray-600 text-sm">
+          Find the perfect piece or accessory to finish off your favorite room in the house.
+        </p>
+      </div>
+      <div className="my-8 flex flex-col lg:flex-row justify-between">
+        <DisplaySmall
+        imageSrc={inventory[0].image}
+        title={inventory[0].name}
+        subtitle={inventory[0].categories[0]}
+        link={`/product/${slugify(inventory[0].name)}`}/>
+        <DisplaySmall
+        imageSrc={inventory[1].image}
+        title={inventory[1].name}
+        subtitle={inventory[1].categories[0]}
+        link={`/product/${slugify(inventory[1].name)}`}/>
+        <DisplaySmall
+        imageSrc={inventory[2].image}
+        title={inventory[2].name}
+        subtitle={inventory[2].categories[0]}
+        link={`/product/${slugify(inventory[2].name)}`}/>
+        <DisplaySmall
+        imageSrc={inventory[3].image}
+        title={inventory[3].name}
+        subtitle={inventory[3].categories[0]}
+        link={`/product/${slugify(inventory[3].name)}`}/>
+      </div>
+
     </>
   )
 }
 
 
 export async function getStaticProps() {
-  const inventoryCategorized = inventory.reduce((acc, next)=>{
+  const inventory = await fetchInventory()
+  
+  const inventoryCategorized = inventory.reduce((acc, next) => {
     const categories = next.categories
     categories.forEach(c => {
       const index = acc.findIndex(item => item.name === c)
@@ -62,7 +112,7 @@ export async function getStaticProps() {
         const item = acc[index]
         item.itemCount = item.itemCount + 1
         acc[index] = item
-      }else{
+      } else {
         const item = {
           name: c,
           image: next.image,
@@ -70,10 +120,10 @@ export async function getStaticProps() {
         }
         acc.push(item)
       }
-
     })
     return acc
   }, [])
+  
   return {
     props: {
       inventoryData: inventory,

@@ -10,26 +10,28 @@ export default function Layout({ children, categories }) {
   }
   return (
     <div>
-      <nav>
-        <div className="flex justify-center">
-          <div className="mobile:px-12 sm:flex-row sm:pt-12 sm:pb-6 desktop:px-0 px-4 pt-8 flex flex-col w-fw">
-            <div className="mb-4 sm:mr-16 max-w-48 sm:max-w-none ">
+      <nav className="flex justify-center flex-row ">
+          <div className="
+            sm:px-12 sm:flex-row sm:pt-12 sm:pb-6 xl:px-0
+            px-4 pt-8 flex flex-col w-fw
+          ">
+            <div className="mb-4 sm:mr-16 max-w-48 sm:max-w-none">
               <Link href="/" aria-label="Home">
-               
+                
                   <img src="/logo.png" alt="logo" width="90" height="28" />
-               
+                
               </Link>
-            
-            <div className="flex flex-auto mt-5">
+            </div>
+            <div className="flex flex-wrap mt-1">
               <Link href="/" aria-label="Home">
-               
+              
                   <p className="
                     sm:mr-8 sm:mb-0
-                    mb-4 text-left text-smaller mr-4 space-x-20
+                    mb-4 text-left text-smaller mr-4
                   ">
                   Home
                   </p>
-               
+                
               </Link>
               {
                 categories.map((category, index) => (
@@ -38,18 +40,19 @@ export default function Layout({ children, categories }) {
                     key={index}
                     aria-label={category}
                   >
-                   
+                    
                       <p className="
-                          sm:mr-8 sm:mb-0 mb-4 text-left text-smaller mr-4 flex-wrap
+                         sm:mr-8 sm:mb-0
+                          mb-4 text-left text-smaller mr-4
                         ">
                         {category.charAt(0).toUpperCase() + category.slice(1)}
                       </p>
-                   
+                    
                   </Link>
                 ))
               }
               <Link href="/categories" aria-label="All categories">
-               
+                
                   <p className="
                     sm:mr-8 sm:mb-0
                     mb-4 text-left text-smaller mr-4 
@@ -60,8 +63,7 @@ export default function Layout({ children, categories }) {
               </Link>
             </div>
           </div>
-        </div>
-        </div>
+        
       </nav>
       <div className="mobile:px-10 px-4 pb-10 flex justify-center">
         <main className="w-fw">{children}</main>
@@ -72,15 +74,16 @@ export default function Layout({ children, categories }) {
         flex-col
         flex w-fw px-12 py-8
         desktop:px-0
+        border-t-4
         border-solid
-        border-t border-gray-300">
+         border-gray-300">
           <span className="block text-gray-700 text-xs">Copyright © 2021 JAMstack Ecommerce. All rights reserved.</span>
           <div className="
             sm:justify-end sm:m-0
             flex flex-1 mt-4
           ">
             <Link href="/admin" aria-label="Admin panel">
-              
+             
               <p className="text-sm font-semibold">Admins</p>
               
             </Link>
