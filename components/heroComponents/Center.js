@@ -13,7 +13,7 @@ const Center = ({price, title, link}) => {
             </p>
             <p className="py-6 tracking-wide">
                 From <span>
-                    ${price}
+                    Rp.{price}
                 </span>
             </p>
             <Button 

@@ -34,7 +34,7 @@ export default function Home({categories: categoryData = [], inventoryData = []}
               category="SOFAS"
             />
             <Center
-              price="200"
+              price="200.000"
               title={inventory[2].name}
               link={`/product/${slugify(inventory[2].name)}`}
             />
