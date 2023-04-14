@@ -9,7 +9,7 @@ function Ecommerce({ Component, pageProps, categories }) {
     <Layout categories={categories}>
       <Component {...pageProps} />
     </Layout>
-    <FloatingWhatsApp  phoneNumber="085156182941"
+    <FloatingWhatsApp  phoneNumber="+6285156182941"
         accountName="Anone"/>
     </>
   )
