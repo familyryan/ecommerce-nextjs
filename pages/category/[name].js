@@ -3,11 +3,13 @@ import ListItem from "@/components/ListItem";
 import { titleIfy, slugify } from "@/utils/helpers";
 import fetchCategories from "@/utils/categoryProvider";
 import inventoryForCategory from "@/utils/inventoryForCategory";
+import CartLinkWithContext from "@/components/cartLink";
 
 const Category = (props) => {
     const {inventory, title} = props
     return (
         <>
+        <CartLinkWithContext/>
         <Head>
             <title>
                 Anone Ecommerce - {title}
@@ -33,7 +35,7 @@ const Category = (props) => {
                                     key={index}
                                     link={`/product/${slugify(item.name)}`}
                                     title={item.name}
-                                    price={item.price}
+                                    price={item.price.toLocaleString('id-ID', {currency: 'IDR', style: 'currency'})}
                                     imageSrc={item.image}/>
                                 )
                             })

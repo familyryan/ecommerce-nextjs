@@ -13,6 +13,7 @@ const SiteContext = React.createContext()
 function calculateTotal(cart) {
   const total = cart.reduce((acc, next) => {
     const quantity = next.quantity
+    console.log(next)
     acc = acc + JSON.parse(next.price) * quantity
     return acc
   }, 0)

@@ -7,7 +7,7 @@ import Tag from "@/components/heroComponents/Tag"
 import Footer from "@/components/heroComponents/Footer"
 import Showcase from "@/components/heroComponents/Showcase"
 import DisplaySmall from "@/components/heroComponents/DisplaySmall"
-// import CartLinkWithContext from "@/components/cartLink"
+import CartLinkWithContext from "@/components/cartLink"
 
 import DisplayMedium from "@/components/heroComponents/DisplayMedium"
 export default function Home({categories: categoryData = [], inventoryData = []}) {
@@ -17,7 +17,7 @@ export default function Home({categories: categoryData = [], inventoryData = []}
   const categories = categoryData.slice(0,2)
   return (
     <>
-    {/* <CartLinkWithContext/> */}
+    <CartLinkWithContext/>
     <div className="w-full">
       <Head>
         <title>

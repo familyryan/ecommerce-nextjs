@@ -39,6 +39,7 @@ export default function Layout({ children, categories }) {
                     href={`/category/${slugify(category)}`}
                     key={index}
                     aria-label={category}
+                    className='space-x-10'
                   >
                     
                       <p className="

@@ -22,6 +22,10 @@ function titleIfy(slug) {
   return words.join(' ')
 }
 
+function transform(string){
+  string.toString().replace(/./ , '')
+}
+
 function getTrimmedString(string, length = 8) {
   if (string.length <= length) {
     return string
@@ -31,5 +35,5 @@ function getTrimmedString(string, length = 8) {
 }
 
 export {
-  slugify, titleIfy, getTrimmedString
+  slugify, titleIfy, getTrimmedString, transform
 }
